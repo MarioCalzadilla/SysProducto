@@ -42,6 +42,7 @@ namespace MCSysProducto.DAL
             var compra = await _dbContext.Compras
                 .Include(c => c.DetalleCompras)
                 .FirstOrDefaultAsync(c => c.Id == idCompra);
+
             if (compra != null && compra.Estado != (byte)Compra.EnumEstadoCompra.Anulada)
             {
                 compra.Estado = (byte)Compra.EnumEstadoCompra.Anulada;
@@ -73,7 +74,7 @@ namespace MCSysProducto.DAL
             var compras = await _dbContext.Compras
                 .Include(c => c.DetalleCompras)
                 .Include(c => c.Proveedor) .ToListAsync();
-            return compras;
+            return compras ?? new List<Compra>();
         }
 
         public async Task<List<Compra>> ObtenerPorEstadoAsync(byte estado)
@@ -84,14 +85,20 @@ namespace MCSysProducto.DAL
             {
                 comprasQuery = comprasQuery.Where(c => c.Estado == estado);
             }
+            else
+            {
+                comprasQuery = comprasQuery.Where(c => c.Estado != (byte)Compra.EnumEstadoCompra.Anulada);
+            }
 
             comprasQuery = comprasQuery
                 .Include(c => c.DetalleCompras)
                 .Include(c => c.Proveedor);
+
             var compras = await comprasQuery.ToListAsync();
 
             return compras ?? new List<Compra>();
         }
+
 
         public async Task<List<Compra>> ObtenerReporteComprasAsync(CompraFiltros filtro)
         {

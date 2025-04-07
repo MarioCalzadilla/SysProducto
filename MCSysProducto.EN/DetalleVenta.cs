@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MCSysProducto.EN
 {
-   public class DetalleCompra
+    public class DetalleVenta
     {
         [Key]
         public int Id { get; set; }
 
-        public int IdCompra { get; set; }
+        [ForeignKey("Venta")]
+        public int IdVenta { get; set; }
+
 
         [Required(ErrorMessage = "El Producto es obligatorio")]
         [ForeignKey("Producto")]
@@ -29,11 +31,12 @@ namespace MCSysProducto.EN
 
         [Required(ErrorMessage = "El producto es obligatorio")]
         [Range(0.01, 999999.99, ErrorMessage = "El total debe ser mayor a 0")]
-        public decimal SubTotal { get; set; }   
+        public decimal SubTotal { get; set; }
 
-        public virtual Compra? Compra { get; set; }
+        public virtual Venta? Venta { get; set; }
 
         public virtual Producto? Producto { get; set; }
 
     }
 }
+

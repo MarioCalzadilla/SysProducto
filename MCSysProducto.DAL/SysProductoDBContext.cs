@@ -17,6 +17,10 @@ namespace MCSysProducto.DAL
         public DbSet<Proveedor> Proveedores { get; set; }
         public DbSet<Compra> Compras  { get; set; }
         public DbSet<DetalleCompra> DetalleCompras { get; set; }
+        public DbSet<Cliente> Clientes { get; set; }
+        public DbSet<Venta> Ventas { get; set; }
+        public DbSet<DetalleVenta> DetalleVentas { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -24,12 +28,12 @@ namespace MCSysProducto.DAL
             modelBuilder.Entity<DetalleCompra>()
                  .HasOne(d => d.Compra)
                  .WithMany(c => c.DetalleCompras)
-                 .HasForeignKey(d => d.Compra);
+                 .HasForeignKey(d => d.IdCompra);
 
             base.OnModelCreating(modelBuilder);
                 
         }
 
     }
- }
+}
 

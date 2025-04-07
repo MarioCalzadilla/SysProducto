@@ -1,8 +1,8 @@
-﻿@model Proveedor
+﻿@model Cliente
 
 <div class="card">
     <div class="card-header bg-primary text-white">
-        <h5>Proveedor</h5>
+        <h5>Editar Cliente</h5>
     </div>
     <div class="card-body">
         <form asp-action="Edit" method="post">
@@ -14,9 +14,9 @@
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="NRC" class="form-label"></label>
-                <input asp-for="NRC" class="form-control" />
-                <span asp-validation-for="NRC" class="text-danger"></span>
+                <label asp-for="Dui" class="form-label"></label>
+                <input asp-for="Dui" class="form-control" />
+                <span asp-validation-for="Dui" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="Direccion" class="form-label"></label>
@@ -36,4 +36,4 @@
             <button type="submit" class="btn btn-succes">Modificar</button>
         </form>
     </div>
-</div>
+ </div>

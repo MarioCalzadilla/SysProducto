@@ -1,24 +1,24 @@
-﻿@model MCSysProducto.EN.Compra
+﻿@model MCSysProducto.EN.Venta
 
 @{
-    ViewData["Title"] = "Crear Compra";
+    ViewData["Title"] = "Crear Venta";
     var productos = ViewBag.Productos as List<Producto>;
 
 }
 <div class="container mt-4">
     <div class="card shadow-sm border-0">
         <div class="card-header bg-dark text-white text-center">
-            <h3 class="mb-0"> Factura de Compra</h3>
+            <h3 class="mb-0"> Factura de Venta</h3>
         </div>
         <div class="card-body">
             <form asp-action="Create" method="post">
 
-                <!-- SELECCION DEL PROVEEDOR -->
+                <!-- SELECCION DEL Cliente -->
                 <div class="mb-3">
-                    <label class="form-label fw-bold">Proveedor</label>
-                    <select id="ProveedorId" name="IdProveedor" class="form-select" required>
-                        <option value="">Seleccione un Proveedor</option>
-                        @foreach (var item in ViewBag.Proveedores)
+                    <label class="form-label fw-bold">Cliente</label>
+                    <select id="ProveedorId" name="IdCliente" class="form-select" required>
+                        <option value="">Seleccione un Cliente</option>
+                        @foreach (var item in ViewBag.Clientes)
 
                         {
                             <option value="@item.Value">@item.Text</option>
@@ -67,7 +67,7 @@
 
                 <!-- TABLA DETALLE DE COMPRA -->
                 <div class="mt-4">
-                    <h5 class="fw-bold"> Detalles de Compra</h5>
+                    <h5 class="fw-bold"> Detalles de Venta</h5>
                     <table class="table table-bordered table-striped">
                         <thead class="table-dark">
                             <tr>
@@ -100,7 +100,7 @@
         </div>
     </div>
 </div>
-@section Scripts{
+@section Scripts {
     <script>
 
         let index = 0;

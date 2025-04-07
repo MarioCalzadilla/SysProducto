@@ -10,7 +10,7 @@
 </form>
 
 <div>
-    <a href="@Url.Action("Cerate", "Compra")" class="btn btn-success">Crear Compra</a>
+    <a href="@Url.Action("Create", "Compra")" class="btn btn-success">Crear Compra</a>
 </div>
 
 <table class="table">
@@ -23,23 +23,22 @@
             <th>Acciones</th>
         </tr>
     </thead>
-</table>
-<tbody>
-    @foreach (var compra in Model)
-    {
-        <tr>
-            <td>@compra.Proveedor.Nombre</td>
-            <td>@compra.FechaCompra.ToShortTimeString()</td>
-            <td>@compra.Total</td>
-            <td>@(compra.Estado == 1 ? "Activa" : "Anulada")</td>
-            <td>
-                <a href="@Url.Action("Detalles", "Compra", new { id = compra.Id })" class="btn btn-info">Ver Detalles</a>
-                @if (compra.Estado == 1)
-                {
-                <a href="@Url.Action("Detalles", "Compra", new { id = compra.Id }) " class="btn btn-danger">Anular</a>
-                }
-            </td>
-        </tr>
-    }
+    <tbody>
+        @foreach (var compra in Model)
+        {
+            <tr>
+                <td>@compra.Proveedor.Nombre</td>
+                <td>@compra.FechaCompra.ToShortTimeString()</td>
+                <td>@compra.Total</td>
+                <td>@(compra.Estado == 1 ? "Activa" : "Anulada")</td>
+                <td>
+                    <a href="@Url.Action("Detalles", "Compra", new { id = compra.Id })" class="btn btn-info">Ver Detalles</a>
+                    @if (compra.Estado == 1)
+                    {
+                        <a href="@Url.Action("Anular", "Compra", new { id = compra.Id }) " class="btn btn-danger">Anular</a>
+                    }
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -1,0 +1,50 @@
+﻿@model List<Cliente>
+<h1>Lista de Clientes</h1>
+<div>
+    <a asp-controller="Cliente" asp-action="Create" class="btn btn-primary">Nuevo</a>
+    <a asp-controller="Cliente" asp-action="ReporteClientes" class="btn btn-secondary">Generar PDF</a>
+    <a asp-controller="Cliente" asp-action="ReporteClientesExcel" class="btn btn-secondary">Generar Documento Excel</a>
+    <br />
+    <br />
+    <br />
+    <form asp-action="SubirExcelCliente" asp-controller="Cliente" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="archivoExcel">Subir Excel</label>
+            <input type="file" name="archivoExcel" required />
+        </div>
+        <button type="submit" class="btn btn-primary"> Subir y guardar</button>
+    </form>
+</div>
+@if (Model != null)
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <td>Nombre</td>
+                <td>Dui</td>
+                <td>Direccion</td>
+                <td>Telefono</td>
+                <td>Email</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cliente in Model)
+            {
+                <tr>
+                    <th>@cliente.Nombre</th>
+                    <th>@cliente.Dui</th>
+                    <th>@cliente.Direccion</th>
+                    <th>@cliente.Telefono</th>
+                    <th>@cliente.Email</th>
+
+                    <th>
+                        <a class="btn btn-primary" asp-controller="Cliente" asp-action="Edit" asp-route-id="@cliente.Id">Editar</a>
+                        <a class="btn btn-danger" asp-controller="Cliente" asp-action="Delete" asp-route-id="@cliente.Id">Eliminar</a>
+                    </th>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
+</div>
